@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nestiq/services/property_service.dart';
 import 'package:nestiq/services/booking_service.dart';
-
+import 'package:nestiq/widgets/property_card.dart';
+import 'package:nestiq/widgets/booking_card.dart';
 import 'package:nestiq/widgets/stats_card.dart';
 
 class AgentDashboard extends StatelessWidget {
@@ -200,6 +201,36 @@ class AgentDashboard extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
+    );
+  }
+}
+
+class _SectionTitle extends StatelessWidget {
+  final String title;
+  final VoidCallback onSeeAll;
+
+  const _SectionTitle({
+    Key? key,
+    required this.title,
+    required this.onSeeAll,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        TextButton(
+          onPressed: onSeeAll,
+          child: const Text('See All'),
+        ),
+      ],
     );
   }
 }

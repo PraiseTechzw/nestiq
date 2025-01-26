@@ -102,7 +102,7 @@ class AuthService {
       }
 
       final OAuthCredential credential = FacebookAuthProvider.credential(
-        result.accessToken!.token,
+        result.accessToken!.tokenString,
       );
 
       final userCredential = await _auth.signInWithCredential(credential);
@@ -190,3 +190,4 @@ class AuthService {
     return Exception('An unknown error occurred.');
   }
 }
+

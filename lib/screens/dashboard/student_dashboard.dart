@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nestiq/services/property_service.dart';
 import 'package:nestiq/services/booking_service.dart';
+import 'package:nestiq/widgets/booking_card.dart';
+import 'package:nestiq/widgets/property_card.dart';
 
 
 class StudentDashboard extends StatelessWidget {

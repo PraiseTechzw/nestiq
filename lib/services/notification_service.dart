@@ -1,11 +1,13 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 class NotificationService {
   final FirebaseMessaging _fcm = FirebaseMessaging.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFunctions _functions = FirebaseFunctions.instance;
 
   // Initialize notifications
   Future<void> initialize() async {
@@ -53,22 +55,15 @@ class NotificationService {
     required String body,
     Map<String, dynamic>? data,
   }) async {
-    final userDoc = await _firestore.collection('users').doc(userId).get();
-    final tokens = List<String>.from(userDoc.data()?['fcmTokens'] ?? []);
-
-    for (final token in tokens) {
-      try {
-        await _fcm.sendMessage(
-          to: token,
-          data: data ?? {},
-          notification: RemoteNotification(
-            title: title,
-            body: body,
-          ) as Map<String, dynamic>,
-        );
-      } catch (e) {
-        print('Error sending notification: $e');
-      }
+    try {
+      await _functions.httpsCallable('sendNotification').call({
+        'userId': userId,
+        'title': title,
+        'body': body,
+        'data': data,
+      });
+    } catch (e) {
+      print('Error sending notification: $e');
     }
   }
 }

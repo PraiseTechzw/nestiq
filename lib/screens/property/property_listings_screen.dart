@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nestiq/models/property.dart';
 import 'package:nestiq/services/property_service.dart';
 import 'package:nestiq/widgets/filter_sheet.dart';
+import 'package:nestiq/widgets/property_card.dart';
 
 class PropertyListingsScreen extends StatefulWidget {
   const PropertyListingsScreen({Key? key}) : super(key: key);

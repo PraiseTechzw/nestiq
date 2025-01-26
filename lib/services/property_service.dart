@@ -1,14 +1,71 @@
-// Add missing methods to PropertyService
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:nestiq/models/property.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class PropertyService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  // Get properties with filters
+  Stream<QuerySnapshot> getProperties({
+    PropertyType? type,
+    double? minPrice,
+    double? maxPrice,
+    String? location,
+  }) {
+    Query query = _firestore.collection('properties');
+
+    if (type != null) {
+      query = query.where('type', isEqualTo: type.toString());
+    }
+
+    if (minPrice != null) {
+      query = query.where('price', isGreaterThanOrEqualTo: minPrice);
+    }
+
+    if (maxPrice != null) {
+      query = query.where('price', isLessThanOrEqualTo: maxPrice);
+    }
+
+    if (location != null) {
+      query = query.where('location', isEqualTo: location);
+    }
+
+    return query.snapshots();
+  }
+
+  // Add property
+  Future<void> addProperty(Property property, List<XFile> images) async {
+    try {
+      // Upload images first
+      final List<String> imageUrls = [];
+      for (var image in images) {
+        final ref = _storage.ref().child(
+            'properties/${DateTime.now().millisecondsSinceEpoch}_${image.name}');
+        final uploadTask = ref.putFile(File(image.path));
+        final snapshot = await uploadTask;
+        final url = await snapshot.ref.getDownloadURL();
+        imageUrls.add(url);
+      }
+
+      // Create property with current user as owner
+      final userId = _auth.currentUser?.uid;
+      if (userId == null) throw Exception('User not authenticated');
+
+      final propertyData = property.toFirestore();
+      propertyData['ownerId'] = userId;
+      propertyData['images'] = imageUrls;
+      propertyData['createdAt'] = FieldValue.serverTimestamp();
+
+      await _firestore.collection('properties').add(propertyData);
+    } catch (e) {
+      throw Exception('Failed to add property: $e');
+    }
+  }
 
   // Get property by ID
   Stream<DocumentSnapshot> getPropertyById(String id) {

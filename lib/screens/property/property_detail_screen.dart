@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:nestiq/models/property.dart';
 import 'package:nestiq/services/property_service.dart';
-import 'package:nestiq/services/booking_service.dart';
 import 'package:nestiq/widgets/amenity_chip.dart';
 import 'package:nestiq/widgets/booking_sheet.dart';
 import 'package:nestiq/widgets/review_card.dart';
@@ -55,7 +53,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
             return const Center(child: Text('Property not found'));
           }
 
-          final property = Property.fromDocumentSnapshot(snapshot.data!);
+          final property = snapshot.data!.data() as Map<String, dynamic>;
 
           return CustomScrollView(
             slivers: [
@@ -66,7 +64,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                   background: Stack(
                     children: [
                       CarouselSlider(
-                        items: property.images.map((url) {
+                        items: (property['images'] as List<dynamic>).map((url) {
                           return Image.network(
                             url,
                             fit: BoxFit.cover,
@@ -87,7 +85,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                         right: 0,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: property.images.asMap().entries.map((entry) {
+                          children: (property['images'] as List<dynamic>).asMap().entries.map((entry) {
                             return Container(
                               width: 8,
                               height: 8,
@@ -140,12 +138,12 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  property.title,
+                                  property['title'],
                                   style: Theme.of(context).textTheme.headlineSmall,
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  property.location,
+                                  property['location'],
                                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                     color: Colors.grey[600],
                                   ),
@@ -157,7 +155,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                '\$${property.price}/month',
+                                '\$${property['price']}/month',
                                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                   color: Theme.of(context).primaryColor,
                                   fontWeight: FontWeight.bold,
@@ -190,7 +188,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        property.description,
+                        property['description'],
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       const SizedBox(height: 24),
@@ -204,7 +202,7 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                       Wrap(
                         spacing: 8,
                         runSpacing: 8,
-                        children: property.amenities.entries.map((entry) {
+                        children: property['amenities'].entries.map((entry) {
                           return AmenityChip(
                             label: entry.key,
                             value: entry.value.toString(),
@@ -224,17 +222,17 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
                         child: GoogleMap(
                           initialCameraPosition: CameraPosition(
                             target: LatLng(
-                              property.latitude,
-                              property.longitude,
+                              property['latitude'],
+                              property['longitude'],
                             ),
                             zoom: 15,
                           ),
                           markers: {
                             Marker(
-                              markerId: MarkerId(property.id),
+                              markerId: MarkerId(property['id']),
                               position: LatLng(
-                                property.latitude,
-                                property.longitude,
+                                property['latitude'],
+                                property['longitude'],
                               ),
                             ),
                           },

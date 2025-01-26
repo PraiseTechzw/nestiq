@@ -20,31 +20,36 @@ class DefaultFirebaseOptions {
     }
   }
 
+  
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'your-api-key',
-    appId: 'your-app-id',
-    messagingSenderId: 'your-sender-id',
-    projectId: 'your-project-id',
-    authDomain: 'your-auth-domain',
-    storageBucket: 'your-storage-bucket',
+    apiKey: 'AIzaSyCYHY4i3ihYVn03BJ2mjWjdllVaJ1GOWcY',
+    appId: '1:488633539226:web:21975206d29e3428349d23',
+    messagingSenderId: '488633539226',
+    projectId: 'aoura-ad5ee',
+    authDomain: 'aoura-ad5ee.firebaseapp.com',
+    databaseURL: 'https://aoura-ad5ee-default-rtdb.firebaseio.com',
+    storageBucket: 'aoura-ad5ee.appspot.com',
+    measurementId: 'G-1GNJ5SDCTN',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'your-api-key',
-    appId: 'your-app-id',
-    messagingSenderId: 'your-sender-id',
-    projectId: 'your-project-id',
-    storageBucket: 'your-storage-bucket',
+    apiKey: 'AIzaSyC2pgCkFcb9RYzjIiV3l8QFTTI68Y2Tyqo',
+    appId: '1:488633539226:android:9d6199bb1e97cd15349d23',
+    messagingSenderId: '488633539226',
+    projectId: 'aoura-ad5ee',
+    databaseURL: 'https://aoura-ad5ee-default-rtdb.firebaseio.com',
+    storageBucket: 'aoura-ad5ee.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'your-api-key',
-    appId: 'your-app-id',
-    messagingSenderId: 'your-sender-id',
-    projectId: 'your-project-id',
-    storageBucket: 'your-storage-bucket',
-    iosClientId: 'your-ios-client-id',
-    iosBundleId: 'your-ios-bundle-id',
+    apiKey: 'AIzaSyDRq3TtOM-ucO9RsYpzytjCItRxzDOPwmc',
+    appId: '1:488633539226:ios:412212127effde28349d23',
+    messagingSenderId: '488633539226',
+    projectId: 'aoura-ad5ee',
+    databaseURL: 'https://aoura-ad5ee-default-rtdb.firebaseio.com',
+    storageBucket: 'aoura-ad5ee.appspot.com',
+    iosClientId: '488633539226-ijdpb8e5sa8e2vqgvj6mjc78tsek8t3i.apps.googleusercontent.com',
+    iosBundleId: 'zw.co.appixiasoftwares.nestiq',
   );
 }
 
