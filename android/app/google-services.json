@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "488633539226",
+    "firebase_url": "https://aoura-ad5ee-default-rtdb.firebaseio.com",
+    "project_id": "aoura-ad5ee",
+    "storage_bucket": "aoura-ad5ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488633539226:android:1569d7dd6a6af294349d23",
+        "android_client_info": {
+          "package_name": "com.appixiasoftwares.dreamdream"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488633539226-577fqbl39m73up1ip1lja6lsea493c52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2pgCkFcb9RYzjIiV3l8QFTTI68Y2Tyqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488633539226-577fqbl39m73up1ip1lja6lsea493c52.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "488633539226-qpt64e22h3d3kirmgmeav8kkiq02s17c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appixiasoftwares.dreamdream"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488633539226:android:9d6199bb1e97cd15349d23",
+        "android_client_info": {
+          "package_name": "zw.co.appixiasoftwares.nestiq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488633539226-577fqbl39m73up1ip1lja6lsea493c52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2pgCkFcb9RYzjIiV3l8QFTTI68Y2Tyqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488633539226-577fqbl39m73up1ip1lja6lsea493c52.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "488633539226-qpt64e22h3d3kirmgmeav8kkiq02s17c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appixiasoftwares.dreamdream"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
