@@ -293,7 +293,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Nestiq. All rights reserved.
+            &copy; {new Date().getFullYear()} Nestiq. All rights reserved..
           </div>
         </div>
       </footer>
