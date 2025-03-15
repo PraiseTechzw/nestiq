@@ -57,7 +57,7 @@ export default function LoginPage() {
             </Link>
           </div>
           <CardTitle className="text-2xl text-center">Welcome back</CardTitle>
-          <CardDescription className="text-center">Sign in to your {role} account</CardDescription>
+          <CardDescription className="text-center">Sign in to your {role} account</CardDescription>.
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
